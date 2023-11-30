@@ -1,0 +1,6 @@
+Dans les fichiers 'utils' généralement, on place des modules qui contiennent les fonctions qui risquent d'être utilisés tout au long du projet.
+
+Par exemple ici les fonctions pour scrapper les données sont placés dans utils pour alléger les notebook, et ces fonctions seront surement utilisées tout au long du projet
+
+Il faut cependant faire gaffe et ne pas mettre toutes les fonctions dans un même module, sinon lorsque on les importes depuis un notebook, on consommera plus de mémoire que nécessaire.
+
