@@ -10,7 +10,7 @@ Afin de comprendre le contexte derrière la problématique, le fichier ``documen
 
 ### Contributeurs
 
-Nadia ZARGHOUNI - nadia.zarghouni@ensae.fr
+Nadia ZARGOUNI - nadia.zargouni@ensae.fr
 
 Youssel EL HACHEM - youssef.elhachem@ensae.fr
 
