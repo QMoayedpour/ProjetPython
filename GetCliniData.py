@@ -1,5 +1,5 @@
-#Exemple de module simple pour executer un module simplement depuis un terminal en spécifiant des arguments. On utilisera ce module pour importer les données
-#Depuis un terminal simplement en spécifiant quelques arguments (taille de l'échantillon, keyword et fichier csv de sortie)
+# Exemple de module simple pour executer un module simplement depuis un terminal en spécifiant des arguments. On utilisera ce module pour importer les données
+# Depuis un terminal simplement en spécifiant quelques arguments (taille de l'échantillon, keyword et fichier csv de sortie)
 
 
 import argparse
@@ -15,4 +15,4 @@ args = parser.parse_args()
 print(args.accumulate(args.integers))
 
 
-#python GetCliniData.py 1 2 3 4 5 --sum
+# python GetCliniData.py 1 2 3 4 5 --sum
