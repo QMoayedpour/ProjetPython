@@ -1,6 +1,9 @@
 from tabulate import tabulate
 import pandas as pd
 import matplotlib.pyplot as plt
+import geopandas as gpd
+import plotly.express as px
+import numpy as np
 
 
 def afficher_colonnes_manquantes(df, seuil=0.95):
