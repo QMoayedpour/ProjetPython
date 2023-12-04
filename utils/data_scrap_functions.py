@@ -3,6 +3,7 @@ import requests
 import re
 from tqdm import trange
 import time
+from concurrent.futures import ThreadPoolExecutor
 
 
 def get_list(url):
@@ -94,4 +95,64 @@ def get_data(taille=10, list_fields=['NCTId', 'StartDate', 'LastUpdatePostDate']
     full_df = full_df.applymap(treat_list)
 
     print("Temps requete API:", '-'*20, http_time, '\n\n', 'Temps Pandas:', '-'*20, pandas_time)
+    return full_df
+
+
+def test_data(url):
+    """Fonction qui test si la requête envoyé à l'API a bien fonctionné, l'intérêt est que
+    si elle a échoué, le code ne s'interrompt pas mais attends 3 secondes à la place
+
+    Args:
+        url (str): url de l'API clinicaltrials
+
+    Returns:
+        _DataFramePandas: 
+    """
+    try:
+        req_temp = requests.get(url)
+        req_temp.raise_for_status()  # Vérifie si la requête a réussi
+        data_temp = req_temp.json()['StudyFieldsResponse']['StudyFields']
+        return pd.DataFrame(data_temp).drop('Rank', axis=1)
+    except requests.exceptions.RequestException as e:
+        print(f"Erreur de connexion à l'url {url}: {e}")
+        time.sleep(3)  # Attend 3 secondes en cas d'erreur
+        return pd.DataFrame()
+
+def get_data_parralel(taille=10, list_fields=['NCTId', 'StartDate', 'LastUpdatePostDate'], keyword=''):
+    full_df = pd.DataFrame()
+    http_time = 0
+    pandas_time = 0
+    itter = len(list_fields) // 20 + 1
+
+    with ThreadPoolExecutor(max_workers=itter) as executor:
+        for j in trange(taille):
+            futures = []
+
+            for i in range(itter):
+                fields = '%2C'.join(list_fields[i * 20:(i + 1) * 20])
+                url_temp = f'https://classic.clinicaltrials.gov/api/query/study_fields?expr={keyword}&fields='
+                url_temp += fields
+                url_temp += f'&min_rnk={j * 1000 + 1}&max_rnk={(j + 1) * 1000}&fmt=json'
+
+                futures.append(executor.submit(test_data, url_temp))
+
+            st = time.time()
+            dfs = [future.result() for future in futures]
+            et = time.time()
+            http_time += et - st
+
+            st = time.time()
+            df = pd.concat(dfs, axis=1)
+            et = time.time()
+            pandas_time += et - st
+
+            st = time.time()
+            full_df = pd.concat([full_df, df], axis=0)
+            et = time.time()
+            pandas_time += et - st
+
+    full_df = full_df.reset_index(drop=True)
+    full_df = full_df.applymap(treat_list)
+
+    print("Temps requete API:", '-' * 20, http_time, '\n\n', 'Temps Pandas:', '-' * 20, pandas_time)
     return full_df
