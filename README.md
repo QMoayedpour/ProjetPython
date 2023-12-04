@@ -1,3 +1,6 @@
+![](images/ensae_logo.png)
+
+
 # Project Python 2023
 
 Projet "Python pour la DataScience" en 2ème année cycle ingénieur à l'ENSAE. 
