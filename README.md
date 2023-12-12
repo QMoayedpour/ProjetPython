@@ -58,7 +58,7 @@ On cherche à démontrer les effets positifs des facteurs suivants :
 - La qualité du sponsor de l'étude (expérience, taux de succès passé, poids financier)
 - La concentration des sponsors et collaborateurs sur une même zone géographique
 
-Nous nous concentrons donc sur un certain type d'étude médicale ici, l'essai clinique avec intervention et traitement, mené par des laboratoires (acteurs industriels). Comme nous travaillons sur les effets de la qualité des sponsors sur la taux de réussite des essais cliniques en phase III, les études ne précisant pas la localisation géographique des sponsors et des collaborateurs ont été écartées, de même que toutes les données comportant des erreurs détectées après la collecte sur ClinicalTrials.gov. 
+Nous nous concentrons donc sur un certain type d'étude médicale ici, l'essai clinique avec intervention et traitement, mené par des laboratoires (acteurs industriels). Comme nous travaillons sur les effets de la qualité des sponsors sur la taux de réussite des essais cliniques en phase III, les études ne précisant pas la localisation géographique des sponsors et des collaborateurs ont été écartées, de même que toutes les données comportant des erreurs détectées après la collecte sur ClinicalTrials.gov. Il est aussi important de noter que certaines données sont éronnées (par exemple, parfois la date de début n'est pas correcte)
 
 
 
