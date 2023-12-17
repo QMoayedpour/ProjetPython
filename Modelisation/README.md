@@ -27,25 +27,25 @@ Le modèle obtient les résultats suivants:
 
 |      Label      | Precision | Recall | F1-Score | Support |
 |-----------------|-----------|--------|----------|---------|
-| B-Condition     |   0.79    |  0.81  |   0.80   |  1729   |
-| B-Drug          |   0.84    |  0.84  |   0.84   |   713   |
-| B-Mood          |   0.27    |  0.14  |   0.19   |    42   |
-| B-Observation   |   0.49    |  0.19  |   0.27   |   210   |
-| B-Person        |   0.73    |  0.68  |   0.70   |   169   |
-| B-Procedure     |   0.68    |  0.68  |   0.68   |   507   |
-| I-Condition     |   0.75    |  0.75  |   0.75   |  1457   |
-| I-Drug          |   0.66    |  0.75  |   0.70   |   335   |
-| I-Mood          |   0.27    |  0.15  |   0.20   |    26   |
-| I-Observation   |   0.27    |  0.14  |   0.19   |   242   |
+| B-Condition     |   0.84    |  0.82  |   0.83   |  2038   |
+| B-Drug          |   0.88    |  0.81  |   0.84   |   774   |
+| B-Mood          |   0.47    |  0.21  |   0.30   |    42   |
+| B-Observation   |   0.54    |  0.28  |   0.37   |   211   |
+| B-Person        |   0.82    |  0.74  |   0.78   |   172   |
+| B-Procedure     |   0.70    |  0.73  |   0.71   |   590   |
+| I-Condition     |   0.77    |  0.76  |   0.76   |  1588   |
+| I-Drug          |   0.73    |  0.73  |   0.73   |   358   |
+| I-Mood          |   0.64    |  0.27  |   0.38   |    26   |
+| I-Observation   |   0.38    |  0.11  |   0.17   |   249   |
 | I-Person        |   0.00    |  0.00  |   0.00   |    27   |
-| I-Procedure     |   0.74    |  0.65  |   0.69   |   501   |
-| O               |   0.92    |  0.94  |   0.93   | 12157   |
+| I-Procedure     |   0.70    |  0.69  |   0.69   |   531   |
+| O               |   0.91    |  0.94  |   0.93   | 12545   |
 
 |    Metric       |   Value   |
 |-----------------|-----------|
-| Accuracy        |   0.86    |
-| Macro Avg       |   0.57    |
-| Weighted Avg    |   0.85    |
+| Accuracy        |   0.87    |
+| Macro Avg       |   0.64    |
+| Weighted Avg    |   0.86    |
 
 On voit que certains labels sont rares et le modèle converge alors mal. Il est envisagé de re-entrainer le modèle mais cela demande un certains temps et de la puissance de calcul.
 
