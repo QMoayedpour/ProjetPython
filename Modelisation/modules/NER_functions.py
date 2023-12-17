@@ -251,7 +251,7 @@ class Bert_Model(object):
 
     def batch_predict(self, sentences):
         with ThreadPoolExecutor() as executor:
-            predictions = list(executor.map(self.predict, sentences))
+            predictions = list(tqdm(executor.map(self.predict, sentences)))
         return predictions    
 
 

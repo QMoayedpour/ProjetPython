@@ -18,4 +18,10 @@ Pour entrainer le modèle, on "fine tune" un modèle BERT, l'entrainement peut �
 
 # Charger le modèle
 
+<<<<<<< HEAD
 Pour l'instant pour charger le modèle, il faut avoir une copie du modèle en local et d'ensuite le transférer dans le dossier ``model`` lorsque l'on clone le git et le nommer "model1". Le fichier est trop volumineux pour être upload sur un git.
+=======
+Pour l'instant pour charger le modèle, il faut avoir une copie du modèle en local et d'ensuite le transférer dans le dossier ``model`` lorsque l'on clone le git et le nommer "model1". Le fichier est trop volumineux pour être upload sur un git.
+
+
+>>>>>>> df80ea9c12a4a902d2da0dc13bfe07d187cc40cf
