@@ -42,7 +42,7 @@ def remove_overlap_entities(sorted_entities):
     return keep_entities
 
 # inverse index of entity annotations
-def entity_dictionary(keep_entities, txt_file):
+def entity_dictionary(keep_entities, txt_file, file):
     f_ann = {}
     with open(txt_file, "r", encoding="utf-8") as f:
         text = f.readlines()
@@ -73,7 +73,7 @@ def brat_to_bio(inputfiles, inputpath, outputpath, select_types):
             out_file = f"{outputpath}/{file}.bio.txt"
             sorted_entities = get_annotation_entities(ann_file, select_types)
             keep_entities = remove_overlap_entities(sorted_entities)
-            f_ann = entity_dictionary(keep_entities, txt_file)
+            f_ann = entity_dictionary(keep_entities, txt_file, file)
             with open(out_file, "w", encoding="utf-8") as f_out:
                 with open(txt_file, "r", encoding="utf-8") as f:
                     sent_offset = 0
@@ -110,6 +110,7 @@ def split_train_test(inputfiles, train=0.8, randomstate=42):
     print(len(train_ids), len(dev_ids), len(test_ids))
     chia_datasets = {"train":train_ids, "dev":dev_ids, "test":test_ids}
     json.dump(chia_datasets, open("./chia_datasets.json", "w", encoding="utf-8"))
+    return chia_datasets
 
 
 def txt_to_df(path, output_path):

@@ -10,9 +10,15 @@ Les données d'entrainements sont issues du dataset [CHIA](https://www.nature.co
 
 Une fois téléchargées, les données doivent être uploadées dans le dossier ``data_chia``.
 
-Il faut ensuite créer un dossier ``trains`` et un fichier ``tests``. C'est dans ce fichier que seront répartis les essais cliniques sous format B-I-O
+Une fois télécharger, utiliser le terminal depuis le dossier Modelisation et faire tourner la commande:
 
-La dernière étape est de simplement faire tourner le notebook ``Notebook_datapreparation.ipynb`` pour obtenir les données d'entraînements sous format CSV.
+```bash
+python data_to_bio.py
+```
+
+Cela devrait ajouter toute les données d'entrainements dans les dossiers adéquats.
+
+Une autre méthode est de simplement faire tourner le notebook ``Notebook_datapreparation.ipynb`` pour obtenir les données d'entraînements sous format CSV.
 
 Le code pour extraire les données des fichier txt a été repris du git suivant: [clinical trials eligibility criteria ner](https://github.com/ctgatecci/Clinical-trial-eligibility-criteria-NER/blob/main/NER%20Preprocessing%20and%20Performance%20Analysis.ipynb)
 
