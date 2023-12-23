@@ -271,28 +271,3 @@ class Bert_Model(object):
         plt.legend()
 
         plt.show()
-
-def convert2cue(oui,sentence):
-    """ Applique le modèle de cue detection au phrases d'entrée pour transformer les mots labellisés cue en [CUE]"""
-    new_sentence=[]
-    for sen in sentence:
-        test_sentence=[x.lower() for x in sen]
-        device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-        n_gpu = torch.cuda.device_count()
-        tokenized_sentence = oui.tokenizer.encode(test_sentence)
-        input_ids = torch.tensor([tokenized_sentence])
-        with torch.no_grad():
-            output = oui.model(input_ids)
-        label_indices = np.argmax(output[0].to('cpu').numpy(), axis=2)
-
-        tokens = oui.tokenizer.convert_ids_to_tokens(input_ids.to('cpu').numpy()[0])
-        new_tokens, new_labels = [], []
-        for token, label_idx in zip(tokens, label_indices[0]):
-            if token.startswith("##"):
-                new_tokens[-1] = new_tokens[-1] + token[2:]
-            else:
-                new_labels.append(oui.tag_values[label_idx])
-                new_tokens.append(token)
-        #print(list(map(lambda x, y: '[CUE]' if x == 'CUE' else y, new_labels[1:-1], test_sentence)))
-        new_sentence.append(list(map(lambda x, y: '[CUE]' if x == 'CUE' else y, new_labels[1:-1], test_sentence)))
-    return new_sentence
