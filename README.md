@@ -57,6 +57,9 @@ On cherche à démontrer les effets positifs des facteurs suivants :
 - La rapidité de l'essai clinique (en admettant qu'il est initié à partir de la participation du premier patient, à chaque phase, et qu'il est achevé à la fin de la récolte des données sur les patients)
 - La qualité du sponsor de l'étude (expérience, taux de succès passé, poids financier)
 - La concentration des sponsors et collaborateurs sur une même zone géographique
+- La complexité du profil de patient recherché
+
+Après avoir récupérer les données, on propose dans un premier temps une présentation et analyse primaire des données dans le dossier ``analyse des données``. Ensuite, on utilisera un modèle de NLP pour pouvoir quantifier la spécificité des profils recherchés. On estimera ensuite à l'aide de plusieurs modèles tel que les modèles de hazard ou une regression l'impact de nos variables d'intérêts sur la durée d'un essai clinique dans le dossier ``Modelisation``. Afin d'accompagner une interprétation à nos résultat, ces derniers sont présentés dans différents notebook et les fonctions qu'on utilise sont généralement présent dans des modules annexes pour alléger le contenu des notebooks.
 
 Nous nous concentrons donc sur un certain type d'étude médicale ici, l'essai clinique avec intervention et traitement, mené par des laboratoires (acteurs industriels). Comme nous travaillons sur les effets de la qualité des sponsors sur la taux de réussite des essais cliniques en phase III, les études ne précisant pas la localisation géographique des sponsors et des collaborateurs ont été écartées, de même que toutes les données comportant des erreurs détectées après la collecte sur ClinicalTrials.gov. Il est aussi important de noter que certaines données sont éronnées (par exemple, parfois la date de début n'est pas correcte)
 
