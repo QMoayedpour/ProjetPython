@@ -18,7 +18,27 @@ from sklearn.metrics import f1_score,classification_report
 from concurrent.futures import ThreadPoolExecutor
 from keras_preprocessing.sequence import pad_sequences
 
+def data_treatment(df, filter=True):
+    """Fonction pour traiter les dataframe
 
+    Args:
+        df (Dataframe): Dataframe de données clinical trials
+        filter (bool, optional): Supprimer ou non les valeurs non pertinentes. Defaults to True.
+
+    Returns:
+        Dataframe: dataframe traité
+    """
+    df['StartDate'] = pd.to_datetime(df['StartDate'], format='%B %d, %Y', errors='coerce')
+    df['CompletionDate'] = pd.to_datetime(df['CompletionDate'], format='%B %d, %Y', errors='coerce')
+    # Créer une nouvelle colonne avec la différence en jours
+    df['TimePassed'] = (df['CompletionDate'] - df['StartDate']).dt.days
+    df['TimePassed'] = df['TimePassed'].fillna(0)
+    df['Bin']=df['TimePassed'].apply(lambda x: 1 if x>5 else 0)
+    if filter:
+        df = df[df['Bin']==1].reset_index(drop=True) #On supprime les valeurs trop petites/protocoles non terminés (ou n'ayant pas de date de fin prévue)
+        df = df[df['TimePassed']<1000].reset_index(drop=True) #On supprime aussi les valeurs trop élevés considérés comme des outliers (Seuil objectif)
+       
+    return df
 
 class SentenceGetter(object):
 
@@ -130,17 +150,17 @@ class Bert_Model(object):
         
     def train_eval(self,epochs=1,max_grad_norm = 1.0,weight=[1,1,1],currloss=np.inf,path='./outputsNSD/modeleNSD'):
         #args.overwrite_output_dir =True
-
+        device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+        n_gpu = torch.cuda.device_count()
+        loss_values, validation_loss_values = [], []
+        self.model.to(device)
         total_steps = len(self.train_dataloader) * epochs
-        class_weights=torch.tensor(weight,dtype=torch.float)
+        class_weights=torch.tensor(weight,dtype=torch.float).to(device)
         scheduler = get_linear_schedule_with_warmup(
             self.optimizer,
             num_warmup_steps=0,
             num_training_steps=total_steps
         )
-        device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-        n_gpu = torch.cuda.device_count()
-        loss_values, validation_loss_values = [], []
 
         for _ in trange(epochs, desc="Epoch"):
             self.model.train()
