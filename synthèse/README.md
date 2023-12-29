@@ -84,3 +84,17 @@ Le cadre étant présenté, notre objectif est d'étudier différentes variables
 On dispose de données de la forme suivante:
 
 ![](images/Image1.png)
+
+On a **450 000** donnnées pour **328** variables. On utilise en réalité peu de variables au cours de notre projet.
+
+### 1. Récupération des données
+
+Pour récupérer les données, on a utiliser l'api de (clinicaltrials)[https://classic.clinicaltrials.gov/api/gui/demo/simple_study_fields]. L'api propose de récupérer les données de 1000 essais cliniques à la fois pour 20 variables. On a donc créer une fonction qui parcours pour un échantillon de 1000 essais cliniques 17 pages pour récupérer les 1000 variables en fusionnant horizontalement les dataframes. On réitère cette opération pour un autre échantillon de 1000 essais cliniques et on fusionne verticalement les dataframes. La fonction peut donc prendre du temps mais on a parraléliser la fonction pour diminuer le temps que met la recolte de données.
+
+
+### 2. Analyse et traitement des données
+
+On dispose maintenant d'un jeu de données, la première étape est de créer nos variables d'intérêts: la durée d'un essai clinique et son succès. On crée la variable ``TimePassed`` qui dénombre la durée, en jours, de l'essai clinique. On obtient une distribution de la forme suivante:
+![](images/Image1.png)
+
+On comprends donc qu'on doit restreindre notre analyse à un sous échantillon car certains essais cliniques disposent d'une durée particulièrement 
