@@ -7,7 +7,7 @@ Dans cette partie, on cherche à déterminer les facteurs non médicaux qui cond
 
 # Données d'entrainements
 
-Les données sont dans le dossier "succès essai clinique", du nom de ``ctg-studies``. Elles ont été téléchargées sur ClinicalTrials.gov, avec les critères qui conviennent. Toutefois, un script dans la branche "data-exploration" permet aussi de scrapper ces données. Ce script étant long à mettre en oeuvre, nous mettons à disposition du lecteur les données, téléchargées grâce au package git-lfs (large files storage), qui permet de push des fichiers volumineux (supérieurs à 100MB).
+Les données sont dans le dossier "succès essai clinique", du nom de ``ctg-studies``. Elles ont été téléchargées sur ClinicalTrials.gov, avec les critères qui conviennent. Toutefois, un script dans la branche "data-exploration" permet aussi de scrapper ces données. Ce script étant long à mettre en oeuvre, nous mettons à disposition du lecteur les données, téléchargées grâce au package git-lfs (large files storage), qui permet de push des fichiers volumineux (supérieurs à 100MB). Il est dans une branche secondaire car c'est un travail exploratoire, qui n'a finalement pas servi à la mise en oeuvre du chargement des données. 
 
 Une fois téléchargées en local, les données doivent être uploadées dans le dossier ``Succès Essai Clinique``.
 
