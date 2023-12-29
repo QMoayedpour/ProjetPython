@@ -1,0 +1,32 @@
+first_class_button = "#modal-187987" #On copie le css selector correspondant au premier bouton "télécharger sur la page"
+second_class_button = "#download > div > div > div > div > div.usa-modal__footer > ul > li:nth-child(1) > button" #deuxième bouton après avoir choisi les features
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+import csv
+import requests
+url = 'https://clinicaltrials.gov/search?aggFilters=phase:3'
+
+driver = webdriver.Chrome()  #autres browsers possibles (à modifier)
+
+try:
+    driver.get(url)
+
+    first_button = WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.CSS_SELECTOR, first_class_button)))
+    first_button.click() #si ne marche pas, cliquer manuellement sur la flèche download
+
+    second_button = WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.CSS_SELECTOR, second_class_button)))
+    second_button.click() #si le premier bouton ne marche pas, cliquer manuellement sur la flèche download
+
+    current_url = driver.current_url
+
+    csv_content = requests.get(current_url).text
+
+    # Save the CSV content to a local file
+    with open('ctg-studies.csv', 'w', newline='', encoding='utf-8') as csvfile:
+        csvfile.write(csv_content)
+
+
+finally :
+    print('Data downloaded and saved to ctg-studies.csv')
