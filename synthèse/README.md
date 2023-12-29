@@ -83,6 +83,4 @@ Le cadre étant présenté, notre objectif est d'étudier différentes variables
 
 On dispose de données de la forme suivante:
 
-<div style="text-align:center">
-    ![](../images/ensae_logo.png)
-</div>
+![](images/Image1.png)
