@@ -70,7 +70,9 @@ L'important est que on obtienne un bon score de "precision" sur les labels qui c
 
 # Application du modèle
 
-Le modèle est ensuite utilisé dans le notebook ``Notebook_modelisation.ipynb``. Une fois le modèle appliqué, on peut alors créer des variables supplémentaires dans le dataframe qui compte le nombre d'apparition de chaque type de critère. On se servira ensuite de ces variables pour étudier si elles ont un impact sur la durée d'un essai cliniques, c'est à dire si le fait d'avoir des critères d'éligibilités très précis risque de rallonger la durée de l'essai clinique.
+Le modèle est ensuite utilisé dans le notebook ``Notebook_Conversion.ipynb``. Une fois le modèle appliqué, on peut alors créer des variables supplémentaires dans le dataframe qui compte le nombre d'apparition de chaque type de critère. On se servira ensuite de ces variables pour étudier si elles ont un impact sur la durée d'un essai cliniques, c'est à dire si le fait d'avoir des critères d'éligibilités très précis risque de rallonger la durée de l'essai clinique.
+
+Le notebook sert essentiellement à montrer le traitement des données pour l'application du modèle et les difficultés rencontrés, toute les étapes ont ainsi été présentés dans le notebook.
 
 
 # Charger le modèle
@@ -80,3 +82,11 @@ Pour l'instant pour charger le modèle, il faut avoir une copie du modèle en lo
 # Regression et Survival Analysis
 
 Le notebook ``Notebook_regression`` présente les regréssions et analyse de survie effectuées. Ces regressions n'ont pas pour but de prédire la durée d'un essai clinique mais d'étudier les différents facteurs qui influent sur sa durée. On applique nos modèles à deux jeux de données, un échantillon de données en phase 3 auquel on a utiliser le modèle de NER pour compter les différents critères importants de chaque essai clinique, et autre échantillon, plus grand, présentant pratiquement l'ensemble des données cliniques disponibles sur le site [clinical-trials](https://clinicaltrials.gov/)(~450 000 essais cliniques).
+
+## Principaux résultats
+
+* Pour les modèles étudiés, le nombre de critère spécifiques du profil du patient à bien un impact significatif et positif sur la durée d'un essai clinique.
+* Le type de sponsor ne semble pas impacter la durée d'un essai clinique.
+* Le fait d'accepter les patients en bonne santés réduit l'espérance de durée de l'essai clinique.
+
+Il y a plusieurs raisons qui font qu'un essais clinique est terminé. Soit il est validé, soit il est annulé, soit il est terminé mais n'a pas été validé. On étudie alors les determinants de l'échecs d'un essai clinique dans la partie ``Survie Essai clinique``.
