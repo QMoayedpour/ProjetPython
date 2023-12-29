@@ -1,6 +1,8 @@
-# Guide modélisation
+# Guide modélisation durée
 
-Cette partie du projet se concentre sur la modélisation. 
+Cette partie du projet se concentre sur la modélisation de la durée de l'essai clinique. <span style="color:red;">On ne se concentre que sur la durée de l'essai clinique, pas si il a échoué ou non</span>. Le dossier ``Succès Essai clinique`` quant à lui étudie réellement la probabilité de succès de l'essai clinique.
+
+Dans cette partie, on entraîne un modèle de NLP pour pouvoir compter les mots d'intérêts dans les critères d'éligibilités d'un essai clinique et on regrèsse ensuite la durée d'un essai clinique sur différentes variables.
 
 L'entrainement de modèles de NLP étant particulièrement longue et demandant beaucoup de données, il a donc été décidé de donner les directives pour pouvoir re-entrainer le modèle à partir du code en y chargeant les données d'entrainement.
 
@@ -22,9 +24,16 @@ Une autre méthode est de simplement faire tourner le notebook ``Notebook_datapr
 
 Le code pour extraire les données des fichier txt a été repris du git suivant: [clinical trials eligibility criteria ner](https://github.com/ctgatecci/Clinical-trial-eligibility-criteria-NER/blob/main/NER%20Preprocessing%20and%20Performance%20Analysis.ipynb)
 
+Les données sont transcrites au format BIO:
+* B représente le début d'un groupe de mot
+* I représente un mot qui appartient à un groupe de mot
+* O représente le label "par défaut"
+
 # Entrainement du modèle
 
 Pour entrainer le modèle, on "fine tune" un modèle BERT, l'entrainement peut être plutot long (environ 1h par epoch). Le paramètre "weight" permet de prendre en compte les poids des labels dans la fonction de perte (par exemple pour éviter que le modèle "oublie" les labels rares).
+
+Le modèle pré-entrainé BERT utilisé est le modèle [BioBert](https://arxiv.org/abs/1901.08746), qui a été entraîné sur un grand corpûs de publications médicales.
 
 Si le fichier ``train.csv`` est bien présent dans le dossier ``data``, il suffit de faire tourner toute les cellules du notebook pour entrainer le modèle.
 
@@ -67,3 +76,7 @@ Le modèle est ensuite utilisé dans le notebook ``Notebook_modelisation.ipynb``
 # Charger le modèle
 
 Pour l'instant pour charger le modèle, il faut avoir une copie du modèle en local et d'ensuite le transférer dans le dossier ``model`` lorsque l'on clone le git et le nommer "model1". Le fichier est trop volumineux pour être upload sur un git.
+
+# Regression et Survival Analysis
+
+Le notebook ``Notebook_regression`` présente les regréssions et analyse de survie effectuées. Ces regressions n'ont pas pour but de prédire la durée d'un essai clinique mais d'étudier les différents facteurs qui influent sur sa durée. On applique nos modèles à deux jeux de données, un échantillon de données en phase 3 auquel on a utiliser le modèle de NER pour compter les différents critères importants de chaque essai clinique, et autre échantillon, plus grand, présentant pratiquement l'ensemble des données cliniques disponibles sur le site [clinical-trials](https://clinicaltrials.gov/)(~450 000 essais cliniques).
