@@ -49,7 +49,7 @@ def plot_distribution_valeurs_manquantes(df):
     plt.show()
 
 
-def data_treatment(df, filter=True):
+def data_treatment(df, max=4000, filter=True):
     """Fonction pour traiter les dataframe
 
     Args:
@@ -67,7 +67,7 @@ def data_treatment(df, filter=True):
     df['Bin']=df['TimePassed'].apply(lambda x: 1 if x>5 else 0)
     if filter:
         df = df[df['Bin']==1].reset_index(drop=True) #On supprime les valeurs trop petites/protocoles non terminés (ou n'ayant pas de date de fin prévue)
-        df = df[df['TimePassed']<1000].reset_index(drop=True) #On supprime aussi les valeurs trop élevés considérés comme des outliers (Seuil objectif)
+        df = df[df['TimePassed']<max].reset_index(drop=True) #On supprime aussi les valeurs trop élevés considérés comme des outliers (Seuil objectif)
        
     return df
 
@@ -103,3 +103,43 @@ def plot_survie(T, df, phase='Phase 3', comparaison="ALL"):
 
     kmf.plot_survival_function(ax = ax, at_risk_counts = True)
     plt.title("Survival of different gender group")
+
+
+
+def plot_survival_compar(df, col, top_values=10, thresh=5):
+    """Tracer courbe de survie pour différentes catégories""
+
+    Args:
+        df (DataFrame): Dataframe d'entrée
+        col (Variable): Variable pour comparer (numérique ou catégorielle)
+        top_values (int, optional): Si variable catégorielle qui a plus de 10 classes, affiche les x principales classes sur le graphique. Defaults to 10.
+    """
+    plt.figure(figsize=(10, 6)) 
+    if len(df[col].value_counts())<thresh:
+        for Country in df[col].fillna('No informations').unique():
+            mask_treat = df[col].fillna('No informations') == Country
+            time_treatment, survival_prob_treatment = kaplan_meier_estimator(
+                df["event"][mask_treat],
+                df["TimePassed"][mask_treat],
+                conf_type=None,
+            )
+
+            plt.step(time_treatment, survival_prob_treatment, where="post", label=f"{col} = {Country}")
+            # plt.fill_between(time_treatment, conf_int[0], conf_int[1], alpha=0.25, step="post")
+    else:
+        for Country in df[col].value_counts().index[:top_values]:
+            mask_treat = df[col] == Country
+            time_treatment, survival_prob_treatment = kaplan_meier_estimator(
+                df["event"][mask_treat],
+                df["TimePassed"][mask_treat],
+                conf_type=None,
+            )
+
+            plt.step(time_treatment, survival_prob_treatment, where="post", label=f"{col} = {Country}")
+
+    plt.ylim(0, 1)
+    plt.ylabel("est. probability of survival $\hat{S}(t)$")
+    plt.xlabel("time $t$")
+    plt.legend(loc="best")
+
+
