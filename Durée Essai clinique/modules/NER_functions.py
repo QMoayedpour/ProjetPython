@@ -14,11 +14,11 @@ from transformers import BertForTokenClassification, AdamW
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
-from sklearn.metrics import f1_score,classification_report
+from sklearn.metrics import f1_score, classification_report
 from concurrent.futures import ThreadPoolExecutor
 from keras_preprocessing.sequence import pad_sequences
 
-def data_treatment(df, filter=True):
+def data_treatment(df,max = 4000 filter=True):
     """Fonction pour traiter les dataframe
 
     Args:
@@ -272,7 +272,7 @@ class Bert_Model(object):
     def batch_predict(self, sentences):
         with ThreadPoolExecutor() as executor:
             predictions = list(tqdm(executor.map(self.predict, sentences)))
-        return predictions    
+        return predictions 
 
 
                 
