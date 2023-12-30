@@ -18,7 +18,7 @@ from sklearn.metrics import f1_score, classification_report
 from concurrent.futures import ThreadPoolExecutor
 from keras_preprocessing.sequence import pad_sequences
 
-def data_treatment(df,max = 4000 filter=True):
+def data_treatment(df,max = 4000, filter=True):
     """Fonction pour traiter les dataframe
 
     Args:
