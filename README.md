@@ -37,7 +37,10 @@ python ./data/GetCliniData.py --size 20 --keyword france --path clini_data.csv
 
 ### Guide du Projet
 
+/!\ Il est recommandé d'avoir assez de mémoire et de puissance de calcul si on souhaite reproduire les résultats du modèle de NLP.
+
 Le projet est réparti en plusieurs. Afin de ne pas disposer d'un seul notebook très volumineux, chaque dossier présente une étape du projet. La partie analyse des données dans le dossier ``analyse des données`` montre une analyse primaire des données ainsi que quelques graphiques. Les dossier ``Durée Essai clinique`` et ``Succès Essai cliniques`` présente la partie modélisation. D'un côté on modélise la durée d'un essai clinique, de l'autre sa probabilité de succès Une brève revue de littérature est disponible dans le dossier ``Revue Littérature``.
+
 Le dossier ``synthèse`` présente un résumé du projet par partie ainsi que nos résultats principaux
 
 ### Contributeurs
