@@ -74,9 +74,10 @@ Les essais cliniques sélectionnés pour l'analyse proviennent d'une base de don
 2. Présentation des Enjeux
 L'objectif principal de cette analyse est de comprendre les facteurs qui influent sur le succès ou l'échec des essais cliniques en phase III. Nous avons identifié les essais en cours (recrutement, actif mais non recrutant, non encore en recrutement, en cours d'invitation) et les avons exclu de notre modèle, nous concentrant sur les essais qui ont dépassé la phase III. L'enjeu majeur réside dans la capacité à prédire le résultat d'un essai clinique en fonction de diverses caractéristiques.
 3. Présentation des Données
-Le jeu de données comprend des informations diverses, notamment le statut de l'étude, les conditions médicales étudiées, les interventions médicales appliquées, les critères d'éligibilité, les dates de début et de fin, la durée de l'essai clinique, et d'autres informations pertinentes. Nous avons également introduit la variable binaire "succès" pour représenter le succès (1) ou l'échec (0) de chaque essai clinique en fonction de son statut.
+Le jeu de données comprend des informations diverses, notamment le statut de l'étude, les conditions médicales étudiées, les interventions médicales appliquées, les critères d'éligibilité, les dates de début et de fin, la durée de l'essai clinique, et d'autres informations pertinentes. 
 4. Modélisation du Succès d'un Essai Clinique 
-Dans le but de modéliser le succès d'un essai clinique, nous avons créé une variable binaire "succès" en fonction des catégories de statut de l'étude. Nous avons attribué la valeur 1 aux essais cliniques réussis (complétés) et la valeur 0 aux essais échoués (terminés ou retirés). Cette variable sera utilisée comme variable cible dans nos modèles prédictifs.
+5. Modélisation de la Durée d'un Essai Clinique
+Pour comprendre la durée d'un essai clinique, nous avons calculé la différence en jours entre la date de début et la date de fin de chaque essai.
 
 
 
