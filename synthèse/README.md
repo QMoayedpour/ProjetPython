@@ -190,10 +190,10 @@ En effectuant une regression logistique de la probabilité de succès sur diffé
 où:
 * public est une variable binaire qui prends la valeur de 1 si le sponsor est un sponsor publique, 0 sinon
 * Eligibilit_Criteria dénombre le nombre de conditions spécifiés dans le texte de critère d'éligibilités
-* pop_subject indique l'importance relative du sujet parmis les essais cliniques, si 30% des essais cliniques traitent de Coronavirus, la variable pop_subject prends la valeur de 0.3 pour un essai clinique sur le thème du Coronavirus.
-* TimePassed est la durée de l'essai clinique
-* nb_location dénombre le nombre de pays différents où l'essai clinique opère
-* Placebo est une variable binaire qui prends la valeur de 1 si l'essai clinique à utiliser un placebo
+* pop_subject indique le nombre d'occurences d'un nom de maladie qui fait partie de la liste des maladies qui font l'objet du plus grand nombre d'essais cliniques. Parmi ces maladies, le coronavirus, le cancer, le diabete (diabetes mellitus en latin), SIDA, des maladies mentales telles que la dépression ou la schizophrénie.
+* TimePassed est la durée de l'essai clinique : d'après notre revue de littérature, la durée d'un essai clinique est plutôt un frein au succès. 
+* nb_location dénombre le nombre de centres différents où l'essai clinique opère
+* Placebo est une variable binaire qui prend la valeur de 1 si l'essai clinique a utilisé un placebo
 
 Ici la regression logistique nous permet d'interpréter que les signes et la significativité des coefficients. On remarque que la variable Eligibility_Criteria a un impact négatif sur la probabilité de succès d'un essai clinique. La durée d'un essai clinique n'a, selon le modèle, pas d'impact significatif sur sa probabilité de succès. Enfin quelques résultats sont intéressants et nécessitent une plus grande discussion autour de la méthode et de la possible présence de biais.
 
