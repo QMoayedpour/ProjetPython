@@ -35,6 +35,8 @@ python ./data/GetCliniData.py --size 20 --keyword france --path clini_data.csv
 - [keyword]: Mot clé pour la recherche de données
 - [path]: chemin d'accès du fichier de sortie (sous format csv!) 
 
+Sinon, ouvrir le notebook ``Notebook_Data.ipynb`` dans le dossier ``data`` et faire tourner toutes les cellules.
+
 ### Guide du Projet
 
 /!\ Il est recommandé d'avoir assez de mémoire et de puissance de calcul si on souhaite reproduire les résultats du modèle de NLP.
