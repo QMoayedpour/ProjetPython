@@ -1,5 +1,5 @@
 # Revue de littérature
-![image](../images/schema.png)
+![image](../images/clinitrial.png)
 
 
 Plusieurs études se sont consacrées aux déterminants de la réussite d'essais cliniques en phase III sans forcément souligner ce qui relève de la recherche médicale. En effet, un certain nombre de paramètres non médicaux, notamment les conditions dans lesquelles sont menés les essais cliniques (nombre de participants, protocole mis en place, choix d'indicateurs de performance de l'essai clinique, temporalité...) ou les acteurs engagés dans l'essai clinique (laboratoires ou universités de renom, zone géographique à forte intensité de recherche médicale, sponsors mobilisés...) ont un impact sur la survie d'un essai clinique par delà la phase III. 
