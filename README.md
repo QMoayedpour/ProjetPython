@@ -12,7 +12,7 @@ Le but du projet est d'étudier l'impact de faits extra-médicaux sur le succès
 Afin de comprendre le contexte derrière la problématique, le fichier ``documentation`` comporte une brève présentation des essais cliniques.
 
 ### Start
-Depuis un terminal, effectuer les commandes suivantes
+Depuis un terminal, effectuer les commandes suivantes :
 
 1. Assurez-vous d'avoir Python installé.
 2. Clonez ce dépôt (cf: [Guide pour cloner un dépot](https://docs.github.com/fr/repositories/creating-and-managing-repositories/cloning-a-repository)).
@@ -67,6 +67,16 @@ Après avoir récupéré les données, on propose dans un premier temps une pré
 
 Nous nous concentrons donc sur un certain type d'étude médicale ici, l'essai clinique avec intervention et traitement, mené par des laboratoires (acteurs industriels). Comme nous travaillons sur les effets de la qualité des sponsors sur la taux de réussite des essais cliniques en phase III, les études ne précisant pas la localisation géographique des sponsors et des collaborateurs ont été écartées, de même que toutes les données comportant des erreurs détectées après la collecte sur ClinicalTrials.gov. Il est aussi important de noter que certaines données sont éronnées (par exemple, parfois la date de début n'est pas correcte)
 
+En résumé les étapes principales de notre projet sont : 
+
+1. Présentation des Essais Cliniques
+Les essais cliniques sélectionnés pour l'analyse proviennent d'une base de données complète comprenant des informations détaillées sur plus de 8 300 essais. Chaque essai clinique est identifié par son numéro NCT, et la base de données contient des informations telles que le titre de l'étude, son statut, les conditions médicales étudiées, les interventions médicales appliquées, les dates de début et de fin, ainsi que la durée totale de l'essai.
+2. Présentation des Enjeux
+L'objectif principal de cette analyse est de comprendre les facteurs qui influent sur le succès ou l'échec des essais cliniques en phase III. Nous avons identifié les essais en cours (recrutement, actif mais non recrutant, non encore en recrutement, en cours d'invitation) et les avons exclu de notre modèle, nous concentrant sur les essais qui ont dépassé la phase III. L'enjeu majeur réside dans la capacité à prédire le résultat d'un essai clinique en fonction de diverses caractéristiques.
+3. Présentation des Données
+Le jeu de données comprend des informations diverses, notamment le statut de l'étude, les conditions médicales étudiées, les interventions médicales appliquées, les critères d'éligibilité, les dates de début et de fin, la durée de l'essai clinique, et d'autres informations pertinentes. Nous avons également introduit la variable binaire "succès" pour représenter le succès (1) ou l'échec (0) de chaque essai clinique en fonction de son statut.
+4. Modélisation du Succès d'un Essai Clinique 
+Dans le but de modéliser le succès d'un essai clinique, nous avons créé une variable binaire "succès" en fonction des catégories de statut de l'étude. Nous avons attribué la valeur 1 aux essais cliniques réussis (complétés) et la valeur 0 aux essais échoués (terminés ou retirés). Cette variable sera utilisée comme variable cible dans nos modèles prédictifs.
 
 
 
