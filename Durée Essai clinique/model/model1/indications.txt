@@ -1,1 +1,0 @@
-Ici, insérer le model (je ne l'upload pas sur le git car trop volumineux), le model est un fichier qui doit etre nommé "model1"
