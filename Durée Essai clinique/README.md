@@ -72,7 +72,7 @@ L'important est que on obtienne un bon score de "precision" sur les labels qui c
 
 Le modèle est ensuite utilisé dans le notebook ``Notebook_Conversion.ipynb``. Une fois le modèle appliqué, on peut alors créer des variables supplémentaires dans le dataframe qui compte le nombre d'apparition de chaque type de critère. On se servira ensuite de ces variables pour étudier si elles ont un impact sur la durée d'un essai cliniques, c'est à dire si le fait d'avoir des critères d'éligibilités très précis risque de rallonger la durée de l'essai clinique.
 
-Le notebook sert essentiellement à montrer le traitement des données pour l'application du modèle et les difficultés rencontrés, toute les étapes ont ainsi été présentés dans le notebook.
+Le notebook sert essentiellement à montrer le traitement des données pour l'application du modèle et les difficultés rencontrés, toute les étapes ont ainsi été présentés dans le notebook. Un notebook annexe ``Notebook_Conversion_2.ipynb`` converti les données plus simplement en utilisant les fonctions présentes dans le module ``DataConvert.py``
 
 
 # Charger le modèle
