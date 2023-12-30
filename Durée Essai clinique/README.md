@@ -31,7 +31,7 @@ Les données sont transcrites au format BIO:
 
 # Entrainement du modèle
 
-Pour entrainer le modèle, on "fine tune" un modèle BERT, l'entrainement peut être plutot long (environ 1h par epoch). Le paramètre "weight" permet de prendre en compte les poids des labels dans la fonction de perte (par exemple pour éviter que le modèle "oublie" les labels rares).
+Pour entrainer le modèle, on "fine tune" un modèle BERT, l'entrainement peut être plutot long (environ 1h par epoch). Le paramètre "weight" permet de prendre en compte les poids des labels dans la fonction de perte (par exemple pour éviter que le modèle "oublie" les labels rares). L'entrainement du modèle s'effectue dans le notebook ``Entrainement_modele.ipnb``
 
 Le modèle pré-entrainé BERT utilisé est le modèle [BioBert](https://arxiv.org/abs/1901.08746), qui a été entraîné sur un grand corpûs de publications médicales.
 
