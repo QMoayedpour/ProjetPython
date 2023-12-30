@@ -28,7 +28,7 @@ pip install -r requirements.txt
 
 Afin de scrapper des données cliniques, vous pouvez utiliser directement un terminal cmd en executant le code suivant:
 ```bash
-python GetCliniData.py --size 20 --keyword france --path ./data/clini_data.csv
+python ./data/GetCliniData.py --size 20 --keyword france --path clini_data.csv
 ```
 
 - [size]: Nombre de données à scrapper (en milliers)
