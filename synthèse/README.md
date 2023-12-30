@@ -206,4 +206,4 @@ En modélisant la durée et le succès d'un essai clinique, on obtient les résu
 * Le sujet d'un essai clinique influe sur sa probabilité de succès. Plus particulièrement, plus un sujet est populaire dans le domaine clinique, plus sa probabilité de succès est élevée. 
 
 Ces deux résultats confirment des points de vues importants de la littérature: 
-Certains projets comme le projet (OMOP-CDM)[https://documentation-snds.health-data-hub.fr/snds/glossaire/omop.html] cherchent à standardisé les données cliniques afin de faciliter la recherche de patient pour un essai clinique. On a vu dans notre projet que un protocole clinique trop détaillé et trop complexe avait un effet néfaste sur la durée et le succès d'un essai clinique. 
+Certains projets comme le projet [OMOP-CDM](https://documentation-snds.health-data-hub.fr/snds/glossaire/omop.html) cherchent à standardisé les données cliniques afin de faciliter la recherche de patient pour un essai clinique. On a vu dans notre projet que un protocole clinique trop détaillé et trop complexe avait un effet néfaste sur la durée et le succès d'un essai clinique. 

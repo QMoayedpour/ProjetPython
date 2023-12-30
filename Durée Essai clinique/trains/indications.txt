@@ -1,0 +1,1 @@
+Dans ce dossier se trouveront les essais cliniques annotés d'entrainement après avoir executé de le module data_to_bio
