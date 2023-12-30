@@ -1,6 +1,6 @@
 # <span style="color:blue">**Durée et succès d'un essai clinique**</span>
 
-Quentin MOAYEDPOUR, Youssef EL HACHEM, Nadia ZARGHOUNI.
+Quentin MOAYEDPOUR, Youssef EL HACHEM, Nadia ZARGOUNI.
 ENSAE 2023/2024.
 
 ## Présentation du projet
