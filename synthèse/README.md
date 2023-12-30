@@ -108,7 +108,7 @@ On a ensuite effectué une analyse préliminaire des données en traçant la cou
 
 Les courbes représentent la probabilité qu'un essai clinique se termine à un moment t. L'estimation est non paramétrique mais permet d'avoir une idée de l'impact de différentes variables sur la durée de l'essai clinique.
 
-### 3. Modéliser la durée d'un essai cliniqu
+### 3. Modéliser la durée d'un essai clinique
 
 Afin de modéliser la durée d'un essai clinique, on veut voir si la complexité du profil de patient recherché influe sur la durée de l'essai clinique. Il n'y a pas de variable qui indique la complexité du profil de patient recherché, on a donc entraîné un modèle de Reconnaissance d'Entités Nommées (NER) qu'on applique ensuite aux textes présentant les critères d'éligibilités d'un essais cliniques. Le but est de pouvoir compter les attributs du patient type pour un essai clinique. Par exemple on peut dénombrer 4 procédures, 2 critères de conditions (maladies par exemples), 3 critères relatifs à un médicament prit etc... On utilise les données CHIA annotés pour entraîner un modèle BERT et on obtient les résultats suivants:
 
@@ -159,8 +159,51 @@ Résultats régression cox:
 
 ##### Note: les variable "_2" représente le carré de la variable et "CountryCT" représente le logarithme du nombre d'essais cliniques réalisés dans le pays pour un essai clinique i.
 
+Interprétation des coefficients: Chaque coefficient estimé s'interprète de la manière suivante. Le fait d'augmenter d'une unité de la ``variable_j`` multiplie, en moyenne et toute chose égale par ailleurs, le risque instantané de sortie de exp(beta_i). Si le coefficient estimé beta_i est négatif, cela signifie que la variable à un impact négatif sur le risque de sortie instantané.
+
 On obtiens comme résultat que le type de sponsor d'un essai clinique n'a pas d'impact significatif sur la durée d'un essai clinique (dans les deux modèles étudiés). Un autre résultat surprenant est que lorsque l'on prends en compte le nombre d'essais clinique réalisé dans le pays pour chaque essais cliniques, on voit que ce dernier à un impact positif sur la durée de l'essai clinique. On s'attendait plutôt à ce que effectuer un essai clinique dans un pays qui en réalise plein diminuerait sa durée (en raison du partage de connaissances, meilleur développement des infrastructures etc...) mais on a observé le phénomène inverse. On note que ce résultat peut être du à un problème de biais et qu'il pourrait être intéressant de trouver des variables instrumentales potentielles pour estimer sans biais (s'il y en a un).
 
 On remarque cependant que nos variables crées ont bien un impact significatifs. Selon nos modèles, un trop grand nombre de conditions sur le profils de patients recherchés tends à augmenter l'espérance de la durée d'un essai clinique. Le fait d'accepter des patients en bonne santé a aussi pour effet de diminuer la durée d'un essai clinique selon les modèles.
 
 Les estimations n'ont cependant pas pris en compte si l'essai clinique était validé ou non. Un essai clinique peut terminer prématurément pour différentes raisons: n'a pas été validé par l'AMF, annulé etc... On se concentre maintenant dans une seconde partie à regarder l'impact de différents facteurs sur la probabilité de réussite d'un essai clinique
+
+### 4. Modéliser le succès d'un essai clinique
+
+Dans cette partie, on se concentre sur les déterminants du succès d'un essai clinique. On sépare dans un premier temps les essais cliniques en cours et ceux terminés et on ne se concentre que sur les essais cliniques en phase 3.
+
+On remarque dans un premier temps que le sujet d'un essai clinique semble être un déterminant de son succès. En s'intéressant aux conditions que traitent un essai cliniques, on remarque que les essais cliniques qui portent sur les conditions les plus traitées ont une plus grande chance de réussite. 
+
+Si dans une première partie on a vu que le type de sponsor influait peu sur la durée d'un essai clinique, ici on regarde aussi la réputation du sponsor.
+
+En effectuant une regression logistique de la probabilité de succès sur différentes variables explicatives, on obtient les résultats suivants : 
+
+| Variable               | Coefficient | Écart-type | Valeur z | P-value | Intervalle de confiance (95%) |
+|------------------------|-------------|------------|----------|---------|--------------------------------|
+| const                  | 1.6891      | 0.097      | 17.369   | 0.000   | [1.498, 1.880]                 |
+| public                 | -0.1639     | 0.087      | -1.890   | 0.059   | [-0.334, 0.006]               |
+| Eligibility_Criteria   | -0.0326     | 0.009      | -3.666   | 0.000   | [-0.050, -0.015]              |
+| pop_subject            | 0.2169      | 0.071      | 3.036    | 0.002   | [0.077, 0.357]                |
+| TimePassed             | 0.0002      | 0.000      | 1.093    | 0.275   | [-0.000, 0.000]               |
+| nb_locations           | -0.0021     | 0.001      | -3.352   | 0.001   | [-0.003, -0.001]              |
+| Placebo                | -0.2670     | 0.072      | -3.706   | 0.000   | [-0.408, -0.126]              |
+
+où:
+* public est une variable binaire qui prends la valeur de 1 si le sponsor est un sponsor publique, 0 sinon
+* Eligibilit_Criteria dénombre le nombre de conditions spécifiés dans le texte de critère d'éligibilités
+* pop_subject indique l'importance relative du sujet parmis les essais cliniques, si 30% des essais cliniques traitent de Coronavirus, la variable pop_subject prends la valeur de 0.3 pour un essai clinique sur le thème du Coronavirus.
+* TimePassed est la durée de l'essai clinique
+* nb_location dénombre le nombre de pays différents où l'essai clinique opère
+* Placebo est une variable binaire qui prends la valeur de 1 si l'essai clinique à utiliser un placebo
+
+Ici la regression logistique nous permet d'interpréter que les signes et la significativité des coefficients. On remarque que la variable Eligibility_Criteria a un impact négatif sur la probabilité de succès d'un essai clinique. La durée d'un essai clinique n'a, selon le modèle, pas d'impact significatif sur sa probabilité de succès. Enfin quelques résultats sont intéressants et nécessitent une plus grande discussion autour de la méthode et de la possible présence de biais.
+
+
+### 5. Conclusion
+
+En modélisant la durée et le succès d'un essai clinique, on obtient les résultats principaux suivants:
+* Un trop grand nombre de critère dans le profil du patient type tends à augmentée la durée d'un essai clinique, et diminuer sa probabilité de succès.
+* Le type de sponsor ne semble pas avoir d'effet significatifs, que ce soit sur la durée ou sur le succès d'un essai clinique. Mais c'est la réputation du sponsor qui a un impact.
+* Le sujet d'un essai clinique influe sur sa probabilité de succès. Plus particulièrement, plus un sujet est populaire dans le domaine clinique, plus sa probabilité de succès est élevée. 
+
+Ces deux résultats confirment des points de vues importants de la littérature: 
+Certains projets comme le projet (OMOP-CDM)[https://documentation-snds.health-data-hub.fr/snds/glossaire/omop.html] cherchent à standardisé les données cliniques afin de faciliter la recherche de patient pour un essai clinique. On a vu dans notre projet que un protocole clinique trop détaillé et trop complexe avait un effet néfaste sur la durée et le succès d'un essai clinique. 

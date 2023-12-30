@@ -35,7 +35,9 @@ python GetCliniData.py --size 20 --keyword france --path ./data/clini_data.csv
 - [keyword]: Mot clé pour la recherche de données
 - [path]: chemin d'accès du fichier de sortie (sous format csv!) 
 
+### Guide du Projet
 
+Le projet a nécessité plusieurs étapes, la partie analyse des données dans le dossier ``analyse des données`` montre une analyse primaire des données ainsi que quelques graphiques. Les dossier ``Durée Essai clinique`` et ``Succès Essai cliniques`` présente la partie modélisation. D'un côté on modélise la durée d'un essai clinique, de l'autre sa probabilité de succès. Le tout est résumé dans un fichier readme.md dans le dossier ``synthèse``.
 
 ### Contributeurs
 
